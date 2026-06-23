@@ -107,7 +107,96 @@ const modalMessage = document.getElementById("modalMessage");
 const modalChallenge = document.getElementById("modalChallenge");
 
 document.getElementById("openMessage").addEventListener("click", () => openModal(modalMessage));
-document.getElementById("openChallenge").addEventListener("click", () => openModal(modalChallenge));
+
+const challengeList = document.getElementById("challengeOptions");
+const usernameStep = document.getElementById("usernameStep");
+const selectedGameLabel = document.getElementById("selectedGameLabel");
+const usernameInput = document.getElementById("usernameInput");
+const sendChallengeBtn = document.getElementById("sendChallengeBtn");
+const backToGames = document.getElementById("backToGames");
+
+let selectedGame = null;
+
+function renderGameOptions() {
+  challengeList.innerHTML = "";
+  challengeList.classList.remove("hidden");
+  usernameStep.classList.add("hidden");
+
+  CHALLENGE_GAMES.forEach((game) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.textContent = game;
+    btn.addEventListener("click", () => selectGame(game));
+    challengeList.appendChild(btn);
+  });
+
+  const customBtn = document.createElement("button");
+  customBtn.className = "option-btn option-btn-custom";
+  customBtn.textContent = "+ type your own";
+  customBtn.addEventListener("click", showCustomGameInput);
+  challengeList.appendChild(customBtn);
+}
+
+function showCustomGameInput() {
+  challengeList.innerHTML = "";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "text-input";
+  input.placeholder = "name the game";
+  input.maxLength = 40;
+
+  const confirmBtn = document.createElement("button");
+  confirmBtn.className = "option-btn";
+  confirmBtn.textContent = "use this →";
+
+  const submit = () => {
+    const val = input.value.trim();
+    if (!val) { input.focus(); return; }
+    selectGame(val);
+  };
+  confirmBtn.addEventListener("click", submit);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") submit(); });
+
+  challengeList.appendChild(input);
+  challengeList.appendChild(confirmBtn);
+  input.focus();
+}
+
+function selectGame(game) {
+  selectedGame = game;
+  selectedGameLabel.textContent = `challenging you to: ${game}`;
+  challengeList.classList.add("hidden");
+  usernameStep.classList.remove("hidden");
+  usernameInput.value = "";
+  usernameInput.focus();
+}
+
+backToGames.addEventListener("click", renderGameOptions);
+
+usernameInput.addEventListener("keydown", (e) => { if (e.key === "Enter") sendChallengeBtn.click(); });
+
+sendChallengeBtn.addEventListener("click", async () => {
+  const username = usernameInput.value.trim();
+  if (!username) { usernameInput.focus(); return; }
+
+  sendChallengeBtn.disabled = true;
+  const ok = await sendToDiscord({
+    description: `**🎮 Challenge incoming:** **${username}** wants to play **${selectedGame}** with you!`,
+    colorHex: "a855f7", // purple
+    cooldownKey: "lastChallengeSent",
+  });
+  closeModal(modalChallenge);
+  showToast(ok ? "challenge sent!" : "");
+  sendChallengeBtn.disabled = false;
+});
+
+document.getElementById("openChallenge").addEventListener("click", () => {
+  renderGameOptions();
+  openModal(modalChallenge);
+});
+
+renderGameOptions();
 
 document.querySelectorAll("[data-close]").forEach((btn) => {
   btn.addEventListener("click", (e) => closeModal(e.target.closest(".modal-overlay")));
@@ -199,21 +288,3 @@ MESSAGE_OPTIONS.forEach((text) => {
   messageList.appendChild(btn);
 });
 
-const challengeList = document.getElementById("challengeOptions");
-CHALLENGE_GAMES.forEach((game) => {
-  const btn = document.createElement("button");
-  btn.className = "option-btn";
-  btn.textContent = game;
-  btn.addEventListener("click", async () => {
-    btn.disabled = true;
-    const ok = await sendToDiscord({
-      description: `**🎮 Challenge incoming:** someone wants to play **${game}** with you!`,
-      colorHex: "a855f7", // purple
-      cooldownKey: "lastChallengeSent",
-    });
-    closeModal(modalChallenge);
-    showToast(ok ? "challenge sent!" : "");
-    btn.disabled = false;
-  });
-  challengeList.appendChild(btn);
-});

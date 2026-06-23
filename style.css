@@ -316,6 +316,49 @@ a { color: inherit; text-decoration: none; }
 .option-btn:hover { border-color: var(--cyan); }
 .option-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
+.option-btn-custom {
+  border-style: dashed;
+  color: var(--text-dim);
+}
+
+.hidden { display: none !important; }
+
+.text-input {
+  width: 100%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  padding: 11px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+.text-input:focus { outline: none; border-color: var(--cyan); }
+
+.step-actions {
+  display: flex;
+  gap: 10px;
+}
+.btn-secondary, .btn-send {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  flex: 1;
+}
+.btn-secondary:hover { border-color: var(--text-dim); }
+.btn-send {
+  border-color: var(--purple-bright);
+  color: var(--purple-bright);
+}
+.btn-send:hover { box-shadow: 0 0 12px -2px var(--purple-bright); }
+.btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* ===================== toast ===================== */
 .toast {
   position: fixed;
