@@ -6,12 +6,12 @@ const CONFIG = {
   // Developer Mode on > Copy User ID). You also need to join the
   // Lanyard discord server once (discord.gg/lanyard) so it can see
   // your presence — you don't need to do anything there besides join.
-  LANYARD_USER_ID: "PUT_YOUR_DISCORD_USER_ID_HERE",
+  LANYARD_USER_ID: "832906318624587789",
 
   // Discord webhook URL (Server Settings > Integrations > Webhooks
   // > New Webhook > Copy URL). Both buttons post here, just tagged
   // with different colors so you can tell them apart.
-  WEBHOOK_URL: "PUT_YOUR_DISCORD_WEBHOOK_URL_HERE",
+  WEBHOOK_URL: "https://discord.com/api/webhooks/1519114402291519589/YWRhIY1CcseMDET3KvkbVJP7O5Dsrx3E77ojz3vXWIdZSxYI-0r0qIAA5Ojv_yDTG4u_",
 
   // how often to refresh the live status panel (ms)
   STATUS_POLL_MS: 15000,
