@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ENGI // signal</title>
+<meta name="description" content="ENGI — musician, ricer, backrooms enjoyer.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<nav class="nav">
+  <span class="nav-mark">⌁ engi.sys</span>
+  <span class="nav-tag">v1.0 // static</span>
+</nav>
+
+<header class="hero">
+  <h1 class="hero-name">ENGI</h1>
+  <p class="hero-tag">musician <span class="dot">·</span> ricer <span class="dot">·</span> backrooms enjoyer</p>
+  <p class="hero-prompt"><span class="prompt-sym">$</span> whoami<span class="cursor">_</span></p>
+</header>
+
+<!-- ===================== SIGNATURE: LIVE STATUS TERMINAL ===================== -->
+<section class="panel" aria-label="live status">
+  <div class="panel-bar">
+    <span class="panel-dot dot-a"></span>
+    <span class="panel-dot dot-b"></span>
+    <span class="panel-dot dot-c"></span>
+    <span class="panel-title">status.sh</span>
+  </div>
+  <div class="panel-body" id="statusBody">
+    <div class="row"><span class="key">user</span><span class="val">ENGI</span></div>
+    <div class="row"><span class="key">status</span><span class="val" id="statusVal">⏳ connecting…</span></div>
+    <div class="row"><span class="key">activity</span><span class="val" id="activityVal">checking…</span></div>
+    <div class="row"><span class="key">uptime</span><span class="val" id="uptimeVal">00:00</span></div>
+    <div class="row"><span class="key">build</span><span class="val">static · self-hosted · zero backend</span></div>
+  </div>
+</section>
+<!-- ============================================================================ -->
+
+<section class="about">
+  <p>I make industrial/noise music, rice my Arch box way too much, and spend an
+  unreasonable amount of time thinking about liminal spaces. This page is just
+  me, hosted for free, with no analytics watching you.</p>
+</section>
+
+<section class="links" aria-label="elsewhere">
+  <a class="link-row" href="#" target="_blank" rel="noopener">
+    <span class="link-label">youtube</span>
+    <span class="link-val">Fat Stacks Of Propeller Hats →</span>
+  </a>
+  <a class="link-row" href="#" target="_blank" rel="noopener">
+    <span class="link-label">discord</span>
+    <span class="link-val">join the server →</span>
+  </a>
+  <a class="link-row" href="#" target="_blank" rel="noopener">
+    <span class="link-label">more</span>
+    <span class="link-val">add your own →</span>
+  </a>
+</section>
+
+<section class="actions">
+  <button class="btn btn-cyan" id="openMessage">
+    <span class="prompt-sym">$</span> send_message
+  </button>
+  <button class="btn btn-purple" id="openChallenge">
+    <span class="prompt-sym">$</span> challenge --game
+  </button>
+</section>
+
+<footer class="footer">
+  <span>built by hand, no framework necessary</span>
+</footer>
+
+<!-- ===================== MODAL: SEND MESSAGE ===================== -->
+<div class="modal-overlay hidden" id="modalMessage" role="dialog" aria-modal="true" aria-labelledby="msgTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="msgTitle">send a message</h2>
+      <button class="modal-close" data-close>×</button>
+    </div>
+    <p class="modal-sub">pick one — it pings my Discord instantly, nothing scary.</p>
+    <div class="option-list" id="messageOptions"></div>
+  </div>
+</div>
+
+<!-- ===================== MODAL: CHALLENGE ===================== -->
+<div class="modal-overlay hidden" id="modalChallenge" role="dialog" aria-modal="true" aria-labelledby="chTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="chTitle">challenge me</h2>
+      <button class="modal-close" data-close>×</button>
+    </div>
+    <p class="modal-sub">pick a game — I'll see it and we can sort out the rest.</p>
+    <div class="option-list" id="challengeOptions"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
