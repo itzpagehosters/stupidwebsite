@@ -22,16 +22,16 @@ const CONFIG = {
 };
 
 const MESSAGE_OPTIONS = [
-  "👋 just stopping by to say hi",
-  "🎵 your noise music goes hard",
-  "🖥️ rate my rice?? (jk... unless)",
-  "👀 found you a good liminal space pic",
-  "🎮 wanna co-op sometime?",
+  "hi hello hi hello hihi hi :3",
+  "i think your music SUCKS (at FSOPH on youtube)",
+  "dude, eat my boogers",
+  "👀👀👀👀",
+  "play some friend slop with me",
 ];
 
 const CHALLENGE_GAMES = [
-  "Minecraft",
-  "Helldivers 2",
+  "Overwatch",
+  "GMOD Prophunt",
   "Fortnite",
   "surprise me",
 ];
